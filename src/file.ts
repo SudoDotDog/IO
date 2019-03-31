@@ -5,7 +5,6 @@
  */
 
 import * as Fs from "fs";
-import * as Path from "path";
 
 export const UTF8 = 'utf8';
 
@@ -46,7 +45,7 @@ export const writeTextFile = (path: string, content: string): Promise<void> =>
             return;
         }));
 
-export const getPathStatus = (path: string): Promise<Fs.Stats> =>
+export const pathStatus = (path: string): Promise<Fs.Stats> =>
     new Promise<Fs.Stats>((resolve: (status: Fs.Stats) => void, reject: (reason: NodeJS.ErrnoException) => void) => {
         Fs.stat(path, (error: NodeJS.ErrnoException, status: Fs.Stats) => {
 
@@ -59,7 +58,7 @@ export const getPathStatus = (path: string): Promise<Fs.Stats> =>
         });
     });
 
-export const getDirectoryFiles = (path: string): Promise<string[]> =>
+export const directoryFiles = (path: string): Promise<string[]> =>
     new Promise<string[]>((resolve: (files: string[]) => void, reject: (reason: NodeJS.ErrnoException) => void) => {
         Fs.readdir(path, (error: NodeJS.ErrnoException, files: string[]) => {
 
@@ -72,58 +71,7 @@ export const getDirectoryFiles = (path: string): Promise<string[]> =>
         });
     });
 
-export const recursiveDo = async (
-    path: string,
-    fileFunction: (file: string) => Promise<void>,
-    directoryFunction?: (path: string) => Promise<void>,
-    condition?: (isFile: boolean, path: string) => boolean,
-): Promise<void> => {
-
-    const status: Fs.Stats = await getPathStatus(path);
-
-    if (status.isDirectory()) {
-
-        if (condition ? condition(false, path) : true) {
-            if (directoryFunction) {
-                await directoryFunction(path);
-            }
-            const files: string[] = await getDirectoryFiles(path);
-            for (const file of files) {
-                const appended: string = Path.join(path, file);
-                await recursiveDo(appended, fileFunction, directoryFunction);
-            }
-        }
-    } else if (status.isFile()) {
-        if (condition ? condition(true, path) : true) {
-            await fileFunction(path);
-        }
-    }
-    return;
-};
-
-export const recursiveDoExcludeFileName = async (
-    path: string,
-    fileFunction: (file: string, relative: string[]) => Promise<void>,
-    excludes: string[],
-    relative: string[] = [],
-): Promise<void> => {
-
-    const status: Fs.Stats = await getPathStatus(path);
-    if (status.isDirectory()) {
-        const subpaths: string[] = await getDirectoryFiles(path);
-        for (const subpath of subpaths) {
-            const appended: string = Path.join(path, subpath);
-            await recursiveDoExcludeFileName(appended, fileFunction, excludes, [...relative, subpath]);
-        }
-    } else if (status.isFile()) {
-        if (!excludes.includes(Path.basename(path))) {
-            await fileFunction(path, relative);
-        }
-    }
-    return;
-};
-
-export const checkPathExists = (path: string): Promise<boolean> =>
+export const pathExists = (path: string): Promise<boolean> =>
     new Promise<boolean>((resolve: (exist: boolean) => void) => {
         Fs.exists(path, (exists: boolean) => {
 
