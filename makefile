@@ -46,9 +46,6 @@ clean: clean-linux
 
 clean-linux:
 	@echo "[INFO] Cleaning dist files"
-	@rm -rf dist
-	@rm -rf dist_script
-	@rm -rf .nyc_output
 	@rm -rf coverage
 
 publish: install tests license build
