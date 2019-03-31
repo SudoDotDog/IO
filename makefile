@@ -9,11 +9,7 @@ mocha := node_modules/.bin/mocha
 
 .IGNORE: clean-linux
 
-main: run
-
-run: 
-	@echo "[INFO] Running through ts-node"
-	@BARKSH_LOCALLY_TEST=true $(ts_node) example/example.ts
+main: dev
 
 dev:
 	@echo "[INFO] Building for development"
