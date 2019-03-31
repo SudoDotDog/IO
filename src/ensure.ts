@@ -35,6 +35,7 @@ export class Ensure {
     }
 
     public async ensureFolder(path: string): Promise<void> {
+
         const splited: string[] = this._split(path);
         const ensurer: string[] = this._recursive(splited, true);
 
@@ -48,11 +49,13 @@ export class Ensure {
     }
 
     private _split(path: string): string[] {
+
         return path.split(Path.sep);
     }
 
     private _recursive(list: string[], includeLast?: boolean): string[] {
         return list.map((_: string, index: number): string => {
+
             const includedIndex: number = includeLast ? index + 1 : index;
             return list.slice(0, includedIndex).join(Path.sep);
         }).filter(Boolean);

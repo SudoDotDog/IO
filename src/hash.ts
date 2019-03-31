@@ -11,8 +11,8 @@ export const md5File = (path: Fs.PathLike): Promise<string> =>
     new Promise<string>((resolve: (result: string) => void, reject: (reason: Error) => void) => {
 
         const readStream: Fs.ReadStream = Fs.createReadStream(path);
-
         const hash: Crypto.Hash = Crypto.createHash('md5');
+
         readStream.on('data', hash.update.bind(hash));
         readStream.on('end', () => {
             resolve(hash.digest('hex'));

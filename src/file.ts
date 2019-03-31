@@ -83,8 +83,8 @@ export const pathExists = (path: string): Promise<boolean> =>
 
 export const attemptMarkDir = (path: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-
         Fs.exists(path, (exists: boolean) => {
+
             if (!exists) {
                 Fs.mkdir(path, (error: NodeJS.ErrnoException) => {
                     if (error) {

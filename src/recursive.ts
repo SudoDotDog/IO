@@ -14,7 +14,6 @@ export type RecursiveFunction = (path: string, relative?: string[]) => void | Pr
 export class Recursive {
 
     public static create(path: string): Recursive {
-
         return new Recursive(path);
     }
 
@@ -80,7 +79,6 @@ export const recursiveDo = async (
     if (status.isDirectory()) {
 
         if (await folderCondition(path, relative)) {
-
             const subpaths: string[] = await directoryFiles(path);
             for (const subpath of subpaths) {
                 const appended: string = Path.join(path, subpath);
@@ -96,7 +94,6 @@ export const recursiveDo = async (
     } else if (status.isFile()) {
 
         if (await fileCondition(path, relative)) {
-
             await func(path, relative);
         }
     }
