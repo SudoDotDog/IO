@@ -4,7 +4,6 @@
  * @description File
  */
 
-import * as Crypto from "crypto";
 import * as Fs from "fs";
 import * as Path from "path";
 
@@ -136,8 +135,8 @@ export const checkPathExists = (path: string): Promise<boolean> =>
 
 export const attemptMarkDir = (path: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.exists(path, (exists: boolean) => {
 
+        Fs.exists(path, (exists: boolean) => {
             if (!exists) {
                 Fs.mkdir(path, (error: NodeJS.ErrnoException) => {
                     if (error) {
@@ -152,21 +151,6 @@ export const attemptMarkDir = (path: string): Promise<void> =>
             }
         });
         return;
-    });
-
-export const getFileMd5 = (path: string): Promise<string> =>
-    new Promise<string>((resolve: (result: string) => void, reject: (reason: Error) => void) => {
-
-        const readStream: Fs.ReadStream = Fs.createReadStream(path);
-
-        const hash: Crypto.Hash = Crypto.createHash('md5');
-        readStream.on('data', hash.update.bind(hash));
-        readStream.on('end', () => {
-            resolve(hash.digest('hex'));
-        });
-        readStream.on('error', (error: Error) => {
-            reject(error);
-        });
     });
 
 export const renameFile = (origin: string, target: string): Promise<void> =>

@@ -5,4 +5,6 @@
  */
 
 export { Ensure } from "./ensure";
+export * from "./file";
+export * from "./hash";
 
