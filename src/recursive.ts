@@ -44,7 +44,7 @@ export class Recursive {
 
     public async do(func: RecursiveFunction): Promise<void> {
 
-        const composedFolderCondition: RecursiveCondition = async (path: string, relative: string[]): Promise<boolean> => {
+        const composedFolderCondition: RecursiveCondition = async (path: string, relative?: string[]): Promise<boolean> => {
             for (const folderCondition of this._folderConditions) {
                 if (!await folderCondition(path, relative)) {
                     return false;
@@ -53,7 +53,7 @@ export class Recursive {
             return true;
         };
 
-        const composedFileCondition: RecursiveCondition = async (path: string, relative: string[]): Promise<boolean> => {
+        const composedFileCondition: RecursiveCondition = async (path: string, relative?: string[]): Promise<boolean> => {
             for (const fileCondition of this._fileConditions) {
                 if (!await fileCondition(path, relative)) {
                     return false;
