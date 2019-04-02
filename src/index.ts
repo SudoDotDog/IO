@@ -10,4 +10,5 @@ export * from "./external";
 export * from "./file";
 export * from "./hash";
 export { Recursive, RecursiveCondition, RecursiveFunction } from "./recursive";
+export * from "./rm";
 

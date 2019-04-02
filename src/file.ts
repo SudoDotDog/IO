@@ -8,6 +8,19 @@ import * as Fs from "fs";
 
 export const UTF8 = 'utf8';
 
+export const removeDirectory = (folder: string): Promise<void> =>
+    new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
+        Fs.rmdir(folder, (error: NodeJS.ErrnoException) => {
+
+            if (error) {
+                reject(error);
+                return;
+            }
+            resolve();
+            return;
+        });
+    });
+
 export const removeFile = (path: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
         Fs.unlink(path, (error: NodeJS.ErrnoException) => {
