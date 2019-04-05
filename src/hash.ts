@@ -21,3 +21,11 @@ export const md5File = (path: Fs.PathLike): Promise<string> =>
             reject(error);
         });
     });
+
+export const md5String = (target: string): string => {
+
+    const hash: Crypto.Hash = Crypto.createHash('md5');
+
+    hash.update(target);
+    return hash.digest('hex');
+};
