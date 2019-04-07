@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@sudoo/bark@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@sudoo/bark/-/bark-2.5.0.tgz#309de93a9d9c68c0aa7db5ab315e5e6cd902e73a"
+  integrity sha512-1C57p5tVxIrnhpqCJatVI/0Nvypk5HLRAMqN61l8GB3rqKd/Kf3VxhFnHHrQaj1jjpb5CHfz3sGjaMQCW6tC5g==
+
 "@sudoo/mock@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@sudoo/mock/-/mock-1.2.0.tgz#7c3c5ff731ddaeb8839dac7a1384b8ef9d95948b"
