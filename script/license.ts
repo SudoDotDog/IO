@@ -16,6 +16,7 @@ Fs.writeFileSync(Path.join(appPath, 'LICENSE'), license, 'utf8');
 
 const parent: any = JSON.parse(Fs.readFileSync(packagePath, 'utf8'));
 const appPackage: any = {
+    engines: parent.engines,
     name: parent.name,
     main: 'index.js',
     version: parent.version,
