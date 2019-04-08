@@ -23,11 +23,20 @@ export const getExternalFileByProtocol = async (url: string, targetPath: string)
 
     switch (protocol) {
         case 'http':
-        case 'https': await downloadFile(url, targetPath);
-        case 'github': await downloadFile(parseGithubProtocol(url), targetPath);
-        case 'file': await copyFile(url.replace('file://', ''), targetPath);
-        case 'text': await writeTextFile(targetPath, url.replace('text://', ''));
-        default: return null;
+        case 'https':
+            await downloadFile(url, targetPath);
+            break;
+        case 'github':
+            await downloadFile(parseGithubProtocol(url), targetPath);
+            break;
+        case 'file':
+            await copyFile(url.replace('file://', ''), targetPath);
+            break;
+        case 'text':
+            await writeTextFile(targetPath, url.replace('text://', ''));
+            break;
+        default:
+            return null;
     }
 
     return true;
