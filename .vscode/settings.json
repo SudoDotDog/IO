@@ -10,7 +10,8 @@
         "subpaths",
         "sudoo",
         "triforce",
-        "tshook"
+        "tshook",
+        "zipfiles"
     ],
     "tslint.configFile": "typescript/tslint.json",
     "javascript.preferences.importModuleSpecifier": "auto",
