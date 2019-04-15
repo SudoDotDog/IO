@@ -1,6 +1,6 @@
 {
   "name": "@sudoo/io",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": ":earth_asia: Node IO utilities",
   "directories": {
     "doc": "docs"
