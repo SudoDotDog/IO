@@ -88,3 +88,7 @@ export const dependableCompressZipFileUnix = (folderPath: string, zipPath: strin
             reject(error);
         });
     });
+
+export const dependableCompressZipFile = async (folderPath: string, zipPath: string): Promise<string> => {
+    return await dependableCompressZipFileUnix(folderPath, zipPath);
+}; 
