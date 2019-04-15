@@ -4,17 +4,21 @@
  * @description Compress
  */
 
-import { ChildProcess, spawn } from "child_process";
+import { ChildProcess, exec, spawn } from "child_process";
+import * as Path from "path";
 
-export const decompressZipFile = (filePath: string, targetPath: string) =>
-    new Promise<void>((resolve: () => void, reject: (reason: Error) => void) => {
+export const dependableDecompressZipFile = (filePath: string, targetPath: string): Promise<string> =>
+    new Promise<string>((resolve: (target: string) => void, reject: (reason: Error) => void): void => {
 
-        const unzip: ChildProcess = spawn('unzip', ['-o', filePath, '-d', targetPath]);
+        const parsedFilePath: string = Path.resolve(filePath);
+        const parsedTargetPath: string = Path.resolve(targetPath);
+
+        const unzip: ChildProcess = spawn('unzip', ['-o', parsedFilePath, '-d', parsedTargetPath]);
         unzip.on('exit', (code: number, signal: string) => {
 
             switch (code) {
                 case 0: {
-                    resolve();
+                    resolve(parsedTargetPath);
                     return;
                 }
                 case 9: {
@@ -28,6 +32,31 @@ export const decompressZipFile = (filePath: string, targetPath: string) =>
             }
         });
         unzip.on('error', (error: Error) => {
+            reject(error);
+        });
+    });
+
+export const dependableCompressZipFile = (folderPath: string, zipPath: string): Promise<string> =>
+    new Promise<string>((resolve: (target: string) => void, reject: (reason: Error) => void): void => {
+
+        const parsedFolderPath: string = Path.resolve(folderPath);
+        const parsedZipPath: string = Path.resolve(zipPath);
+
+        const zip: ChildProcess = exec(`cd "${parsedFolderPath}" && zip "${parsedZipPath}" *`);
+        zip.on('exit', (code: number, signal: string) => {
+
+            switch (code) {
+                case 0: {
+                    resolve(parsedZipPath);
+                    return;
+                }
+                default: {
+                    reject(new Error(signal));
+                    return;
+                }
+            }
+        });
+        zip.on('error', (error: Error) => {
             reject(error);
         });
     });
