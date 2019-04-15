@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/SudoDotDog/IO#readme",
   "dependencies": {
-    "@sudoo/bark": "^2.5.0"
+    "@sudoo/bark": "^2.5.1"
   },
   "devDependencies": {
     "@sudoo/mock": "^1.2.0",
