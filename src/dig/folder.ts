@@ -1,17 +1,12 @@
 /**
  * @author WMXPY
- * @namespace File
+ * @namespace Dig
  * @description Folder
  */
 
-import * as Path from "path";
-import { pathExists } from "./file";
-
 export class Folder {
 
-    public static async dig(basePath: string, ...relative: string[]): Promise<Folder> {
-
-        const exists: boolean = await pathExists(Path.join(basePath, ...relative));
+    public static create(basePath: string, ...relative: string[]): Folder {
 
         return new Folder(basePath, relative, [], []);
     }
@@ -22,12 +17,22 @@ export class Folder {
     private readonly _folders: Folder[];
     private readonly _file: string[];
 
-    private constructor(basePath: string, relative: string[], folders: Folder[], files: string[]) {
+    public constructor(basePath: string, relative: string[], folders: Folder[], files: string[]) {
 
         this._basePath = basePath;
         this._relative = relative;
 
         this._folders = folders;
         this._file = files;
+    }
+
+    public addFolder(folder: Folder) {
+
+        this._folders.push(folder);
+    }
+
+    public addFile(file: string) {
+
+        this._file.push(file);
     }
 }
