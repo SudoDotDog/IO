@@ -139,3 +139,28 @@ export const renameFile = (origin: string, target: string): Promise<void> =>
             return;
         });
     });
+
+export const moveFile = (origin: string, target: string): Promise<void> =>
+    new Promise<void>((resolve: () => void, reject: (error: NodeJS.ErrnoException) => void) => {
+        Fs.rename(origin, target, (error: NodeJS.ErrnoException) => {
+
+            if (error) {
+                reject(error);
+                return;
+            }
+            resolve();
+            return;
+        });
+    });
+
+export const isFolder = async (path: string): Promise<boolean> => {
+
+    const stat: Fs.Stats = await pathStatus(path);
+    return stat.isDirectory();
+};
+
+export const isFile = async (path: string): Promise<boolean> => {
+
+    const stat: Fs.Stats = await pathStatus(path);
+    return stat.isFile();
+};
