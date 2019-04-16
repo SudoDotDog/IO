@@ -32,7 +32,7 @@ export const digFolder = async (basePath: string, ...relative: string[]): Promis
         const joinedSubPath: string = Path.join(path, subPath);
 
         if (await isFolder(joinedSubPath)) {
-            current.addFolder(await digFolder(basePath, ...[...relative, subPath]));
+            current.addFolder(await digFolder(basePath, ...relative, subPath));
         } else {
             current.addFile(subPath);
         }
