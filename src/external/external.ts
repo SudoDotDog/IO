@@ -7,7 +7,7 @@
 import * as Fs from "fs";
 import * as Http from "http";
 import * as Https from "https";
-import { removeFile } from "./file";
+import { removeFile } from "../file/file";
 
 export const getHttpClient = (url: string) => {
 

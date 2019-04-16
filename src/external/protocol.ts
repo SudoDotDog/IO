@@ -5,8 +5,8 @@
  */
 
 import { _Url } from "@sudoo/bark/url";
+import { copyFile, readTextFile, writeTextFile } from "../file/file";
 import { downloadFile, getExternalData } from "./external";
-import { copyFile, readTextFile, writeTextFile } from "./file";
 
 export const parseGithubProtocol = (url: string): string => {
 

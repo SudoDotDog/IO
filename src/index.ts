@@ -4,12 +4,12 @@
  * @description Index
  */
 
-export * from "./compress";
-export { Ensure } from "./ensure";
-export * from "./external";
-export * from "./file";
-export * from "./hash";
-export * from "./protocol";
-export { Recursive, RecursiveCondition, RecursiveFunction } from "./recursive";
-export * from "./rm";
+export * from "./external/external";
+export * from "./external/protocol";
+export { Ensure } from "./file/ensure";
+export * from "./file/file";
+export { Recursive, RecursiveCondition, RecursiveFunction } from "./file/recursive";
+export * from "./file/rm";
+export * from "./internal/compress";
+export * from "./internal/hash";
 

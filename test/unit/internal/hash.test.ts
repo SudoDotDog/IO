@@ -7,7 +7,7 @@
 
 import { expect } from "chai";
 import * as Chance from "chance";
-import { md5String } from "../../src/hash";
+import { md5String } from "../../../src/internal/hash";
 
 describe('Given [io-hash] helper methods', (): void => {
 

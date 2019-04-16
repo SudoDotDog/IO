@@ -8,8 +8,8 @@
 import { Mock, Sandbox } from "@sudoo/mock";
 import { expect } from "chai";
 import * as Chance from "chance";
-import * as func_IO_EXTERNAL from "../../src/external";
-import { mockWriteStream } from "../mock/fs";
+import * as func_IO_EXTERNAL from "../../../src/external/external";
+import { mockWriteStream } from "../../mock/fs";
 
 describe('Given [io-external] helper methods', (): void => {
 
