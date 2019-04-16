@@ -1,7 +1,7 @@
 /**
  * @author WMXPY
- * @namespace IO
- * @description RM
+ * @namespace File
+ * @description Remove
  */
 
 import * as Fs from "fs";

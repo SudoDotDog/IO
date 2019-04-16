@@ -1,6 +1,6 @@
 /**
  * @author WMXPY
- * @namespace IO
+ * @namespace Internal
  * @description Hash
  */
 
