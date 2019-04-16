@@ -13,7 +13,7 @@ export class Folder {
 
         const exists: boolean = await pathExists(Path.join(basePath, ...relative));
 
-        return new Folder(basePath, relative);
+        return new Folder(basePath, relative, [], []);
     }
 
     private readonly _basePath: string;
@@ -22,9 +22,12 @@ export class Folder {
     private readonly _folders: Folder[];
     private readonly _file: string[];
 
-    private constructor(basePath: string, relative: string[]) {
+    private constructor(basePath: string, relative: string[], folders: Folder[], files: string[]) {
 
         this._basePath = basePath;
         this._relative = relative;
+
+        this._folders = folders;
+        this._file = files;
     }
 }
