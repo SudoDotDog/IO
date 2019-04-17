@@ -4,6 +4,8 @@
  * @description Index
  */
 
+export * from "./dig/dig";
+export * from "./dig/folder";
 export * from "./external/external";
 export * from "./external/protocol";
 export * from "./file/ensure";
