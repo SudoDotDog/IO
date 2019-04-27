@@ -1,6 +1,6 @@
 {
   "name": "@sudoo/io",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": ":earth_asia: Node IO utilities",
   "directories": {
     "doc": "docs"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/SudoDotDog/IO#readme",
   "dependencies": {
-    "@sudoo/bark": "^2.5.1",
+    "@sudoo/bark": "^2.6.1",
     "connor": "^2.4.0"
   },
   "devDependencies": {

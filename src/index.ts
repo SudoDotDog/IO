@@ -14,4 +14,5 @@ export * from "./file/recursive";
 export * from "./file/remove";
 export * from "./internal/compress";
 export * from "./internal/hash";
+export * from "./json/recursive";
 
