@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/SudoDotDog/IO#readme",
   "dependencies": {
-    "@sudoo/bark": "^2.6.1",
-    "connor": "^2.4.0"
+    "@sudoo/bark": "^2.7.1",
+    "connor": "^2.6.0"
   },
   "devDependencies": {
     "@sudoo/mock": "^1.2.0",
