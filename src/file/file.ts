@@ -10,7 +10,7 @@ export const UTF8 = 'utf8';
 
 export const copyFile = (origin: string, target: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.copyFile(origin, target, (error: NodeJS.ErrnoException) => {
+        Fs.copyFile(origin, target, (error: NodeJS.ErrnoException | null) => {
 
             if (error) {
                 reject(error);
@@ -23,7 +23,7 @@ export const copyFile = (origin: string, target: string): Promise<void> =>
 
 export const removeDirectory = (folder: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.rmdir(folder, (error: NodeJS.ErrnoException) => {
+        Fs.rmdir(folder, (error: NodeJS.ErrnoException | null) => {
 
             if (error) {
                 reject(error);
@@ -36,7 +36,7 @@ export const removeDirectory = (folder: string): Promise<void> =>
 
 export const removeFile = (path: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.unlink(path, (error: NodeJS.ErrnoException) => {
+        Fs.unlink(path, (error: NodeJS.ErrnoException | null) => {
 
             if (error) {
                 reject(error);
@@ -49,7 +49,7 @@ export const removeFile = (path: string): Promise<void> =>
 
 export const readTextFile = (path: string): Promise<string> =>
     new Promise<string>((resolve: (result: string) => void, reject: (reason: NodeJS.ErrnoException) => void) =>
-        Fs.readFile(path, UTF8, (error: NodeJS.ErrnoException, data: string) => {
+        Fs.readFile(path, UTF8, (error: NodeJS.ErrnoException | null, data: string) => {
 
             if (error) {
                 reject(error);
@@ -61,7 +61,7 @@ export const readTextFile = (path: string): Promise<string> =>
 
 export const writeTextFile = (path: string, content: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) =>
-        Fs.writeFile(path, content, UTF8, (error: NodeJS.ErrnoException) => {
+        Fs.writeFile(path, content, UTF8, (error: NodeJS.ErrnoException | null) => {
 
             if (error) {
                 reject(error);
@@ -73,7 +73,7 @@ export const writeTextFile = (path: string, content: string): Promise<void> =>
 
 export const pathStatus = (path: string): Promise<Fs.Stats> =>
     new Promise<Fs.Stats>((resolve: (status: Fs.Stats) => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.stat(path, (error: NodeJS.ErrnoException, status: Fs.Stats) => {
+        Fs.stat(path, (error: NodeJS.ErrnoException | null, status: Fs.Stats) => {
 
             if (error) {
                 reject(error);
@@ -86,7 +86,7 @@ export const pathStatus = (path: string): Promise<Fs.Stats> =>
 
 export const directoryFiles = (path: string): Promise<string[]> =>
     new Promise<string[]>((resolve: (files: string[]) => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.readdir(path, (error: NodeJS.ErrnoException, files: string[]) => {
+        Fs.readdir(path, (error: NodeJS.ErrnoException | null, files: string[]) => {
 
             if (error) {
                 reject(error);
@@ -112,7 +112,7 @@ export const attemptMarkDir = (path: string): Promise<void> =>
         Fs.exists(path, (exists: boolean) => {
 
             if (!exists) {
-                Fs.mkdir(path, (error: NodeJS.ErrnoException) => {
+                Fs.mkdir(path, (error: NodeJS.ErrnoException | null) => {
                     if (error) {
                         reject(error);
                         return;
@@ -129,7 +129,7 @@ export const attemptMarkDir = (path: string): Promise<void> =>
 
 export const renameFile = (origin: string, target: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (error: NodeJS.ErrnoException) => void) => {
-        Fs.rename(origin, target, (error: NodeJS.ErrnoException) => {
+        Fs.rename(origin, target, (error: NodeJS.ErrnoException | null) => {
 
             if (error) {
                 reject(error);
@@ -142,7 +142,7 @@ export const renameFile = (origin: string, target: string): Promise<void> =>
 
 export const moveFile = (origin: string, target: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (error: NodeJS.ErrnoException) => void) => {
-        Fs.rename(origin, target, (error: NodeJS.ErrnoException) => {
+        Fs.rename(origin, target, (error: NodeJS.ErrnoException | null) => {
 
             if (error) {
                 reject(error);
