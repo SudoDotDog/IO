@@ -4,6 +4,7 @@
  * @description Index
  */
 
+export * from "./crypto/hash";
 export * from "./dig/dig";
 export * from "./dig/folder";
 export * from "./external/external";
