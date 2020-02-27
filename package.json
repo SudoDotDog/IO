@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/SudoDotDog/IO#readme",
   "dependencies": {
-    "@sudoo/bark": "^2.7.1",
-    "connor": "^2.6.1"
+    "@sudoo/bark": "^2.7.2",
+    "connor": "^2.7.0"
   },
   "devDependencies": {
     "@sudoo/mock": "^1.2.0",
-    "@sudoo/triforce": "^2.1.0"
+    "@sudoo/triforce": "^2.1.1"
   },
   "nyc": {
     "extension": [
