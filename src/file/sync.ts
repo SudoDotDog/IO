@@ -5,8 +5,7 @@
  */
 
 import * as Fs from "fs";
-
-export const UTF8: string = 'utf8';
+import { UTF8 } from "./common";
 
 export const copyFileSync = (origin: string, target: string): void => {
 

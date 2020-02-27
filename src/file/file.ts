@@ -5,8 +5,7 @@
  */
 
 import * as Fs from "fs";
-
-export const UTF8 = 'utf8';
+import { UTF8 } from "./common";
 
 export const copyFile = (origin: string, target: string): Promise<void> =>
     new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
