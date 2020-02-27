@@ -6,153 +6,137 @@
 
 import * as Fs from "fs";
 
-export const UTF8 = 'utf8';
+export const UTF8: string = 'utf8';
 
 export const copyFileSync = (origin: string, target: string): void => {
 
     try {
         Fs.copyFileSync(origin, target);
+        return;
     } catch (err) {
         throw err;
     }
-}
+};
 
 export const removeDirectorySync = (folder: string): void => {
 
     try {
         Fs.rmdirSync(folder);
+        return;
     } catch (err) {
         throw err;
     }
-}
-
-export const removeFile = (path: string): Promise<void> =>
-    new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.unlink(path, (error: NodeJS.ErrnoException | null) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-            resolve();
-            return;
-        });
-    });
-
-export const readTextFile = (path: string): Promise<string> =>
-    new Promise<string>((resolve: (result: string) => void, reject: (reason: NodeJS.ErrnoException) => void) =>
-        Fs.readFile(path, UTF8, (error: NodeJS.ErrnoException | null, data: string) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-            resolve(data);
-            return;
-        }));
-
-export const writeTextFile = (path: string, content: string): Promise<void> =>
-    new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) =>
-        Fs.writeFile(path, content, UTF8, (error: NodeJS.ErrnoException | null) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-            resolve();
-            return;
-        }));
-
-export const pathStatus = (path: string): Promise<Fs.Stats> =>
-    new Promise<Fs.Stats>((resolve: (status: Fs.Stats) => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.stat(path, (error: NodeJS.ErrnoException | null, status: Fs.Stats) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-            resolve(status);
-            return;
-        });
-    });
-
-export const directoryFiles = (path: string): Promise<string[]> =>
-    new Promise<string[]>((resolve: (files: string[]) => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.readdir(path, (error: NodeJS.ErrnoException | null, files: string[]) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-            resolve(files);
-            return;
-        });
-    });
-
-export const pathExists = (path: string): Promise<boolean> =>
-    new Promise<boolean>((resolve: (exist: boolean) => void) => {
-        Fs.exists(path, (exists: boolean) => {
-
-            resolve(exists);
-            return;
-        });
-        return;
-    });
-
-export const attemptMarkDir = (path: string): Promise<void> =>
-    new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) => {
-        Fs.exists(path, (exists: boolean) => {
-
-            if (!exists) {
-                Fs.mkdir(path, (error: NodeJS.ErrnoException | null) => {
-                    if (error) {
-                        reject(error);
-                        return;
-                    }
-                    resolve();
-                    return;
-                });
-            } else {
-                resolve();
-            }
-        });
-        return;
-    });
-
-export const renameFile = (origin: string, target: string): Promise<void> =>
-    new Promise<void>((resolve: () => void, reject: (error: NodeJS.ErrnoException) => void) => {
-        Fs.rename(origin, target, (error: NodeJS.ErrnoException | null) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-            resolve();
-            return;
-        });
-    });
-
-export const moveFile = (origin: string, target: string): Promise<void> =>
-    new Promise<void>((resolve: () => void, reject: (error: NodeJS.ErrnoException) => void) => {
-        Fs.rename(origin, target, (error: NodeJS.ErrnoException | null) => {
-
-            if (error) {
-                reject(error);
-                return;
-            }
-            resolve();
-            return;
-        });
-    });
-
-export const isFolder = async (path: string): Promise<boolean> => {
-
-    const stat: Fs.Stats = await pathStatus(path);
-    return stat.isDirectory();
 };
 
-export const isFile = async (path: string): Promise<boolean> => {
+export const removeFileSync = (path: string): void => {
 
-    const stat: Fs.Stats = await pathStatus(path);
-    return stat.isFile();
+    try {
+        Fs.unlinkSync(path);
+        return;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const readTextFileSync = (path: string): string => {
+
+    try {
+        const result: string = Fs.readFileSync(path, UTF8);
+        return result;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const writeTextFileSync = (path: string, content: string): void => {
+
+    try {
+        Fs.writeFileSync(path, content, UTF8);
+        return;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const pathStatusSync = (path: string): Fs.Stats => {
+
+    try {
+        const status: Fs.Stats = Fs.statSync(path);
+        return status;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const directoryFilesSync = (path: string): string[] => {
+
+    try {
+        const fileList: string[] = Fs.readdirSync(path);
+        return fileList;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const pathExistsSync = (path: string): boolean => {
+
+    try {
+        const exists: boolean = Fs.existsSync(path);
+        return exists;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const attemptMarkDirSync = (path: string): void => {
+
+    try {
+        const exists: boolean = Fs.existsSync(path);
+        if (!exists) {
+            Fs.mkdirSync(path);
+        }
+        return;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const renameFileSync = (origin: string, target: string): void => {
+
+    try {
+        Fs.renameSync(origin, target);
+        return;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const moveFileSync = (origin: string, target: string): void => {
+
+    try {
+        Fs.renameSync(origin, target);
+        return;
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const isFolderSync = (path: string): boolean => {
+
+    try {
+        const status: Fs.Stats = pathStatusSync(path);
+        return status.isDirectory();
+    } catch (err) {
+        throw err;
+    }
+};
+
+export const isFileSync = (path: string): boolean => {
+
+    try {
+        const status: Fs.Stats = pathStatusSync(path);
+        return status.isFile();
+    } catch (err) {
+        throw err;
+    }
 };
