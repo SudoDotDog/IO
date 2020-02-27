@@ -7,7 +7,8 @@
 
 import { expect } from "chai";
 import * as Chance from "chance";
-import { readTextFile, UTF8, writeTextFile } from "../../../src/file/file";
+import { UTF8 } from "../../../src/file/common";
+import { readTextFile, writeTextFile } from "../../../src/file/file";
 import { mockReadFile, mockWriteFile } from "../../mock/fs";
 
 describe('Given [io-file] helper methods', (): void => {
