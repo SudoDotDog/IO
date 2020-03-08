@@ -18,4 +18,5 @@ export * from "./file/sync";
 export * from "./internal/compress";
 export * from "./internal/hash";
 export * from "./json/recursive";
+export * from "./stream/write";
 
