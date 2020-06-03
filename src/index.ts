@@ -15,6 +15,7 @@ export * from "./file/file";
 export * from "./file/recursive";
 export * from "./file/remove";
 export * from "./file/sync";
+export * from "./file/text";
 export * from "./internal/compress";
 export * from "./internal/hash";
 export * from "./json/recursive";
