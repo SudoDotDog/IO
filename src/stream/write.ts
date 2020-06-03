@@ -33,7 +33,7 @@ export class FileWritingStream {
 
         return new Promise<void>((resolve: () => void, reject: (reason: any) => void) => {
 
-            this._stream.write(text, (error?: Error) => {
+            this._stream.write(text, (error?: Error | null) => {
 
                 if (error) {
                     reject(error);

@@ -8,7 +8,7 @@ import { _Json } from "@sudoo/bark/json";
 import { _Map } from "@sudoo/bark/map";
 import { _Mutate } from "@sudoo/bark/mutate";
 import * as Path from "path";
-import { readTextFile } from "../file/file";
+import { readTextFile } from "../file/text";
 import { ERROR_CODE, panic } from "../panic/panic";
 
 // tslint:disable-next-line: ban-types
