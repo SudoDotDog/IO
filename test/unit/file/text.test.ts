@@ -1,14 +1,15 @@
 /**
  * @author WMXPY
  * @namespace IO
- * @description File
+ * @description Text
  * @override
  */
 
 import { expect } from "chai";
 import * as Chance from "chance";
+import * as Path from "path";
 import { UTF8 } from "../../../src/file/common";
-import { readTextFile, writeTextFile } from "../../../src/file/file";
+import { readTextFile, writeTextFile } from "../../../src/file/text";
 import { mockReadFile, mockWriteFile } from "../../mock/fs";
 
 describe('Given [io-file] helper methods', (): void => {
@@ -25,9 +26,9 @@ describe('Given [io-file] helper methods', (): void => {
         const path: string = chance.string();
         const result: string = await readTextFile(path);
 
-        expect(result).to.be.equal(path);
+        expect(result).to.be.equal(Path.resolve(path));
         expect(restore()).to.be.deep.equal([{
-            path,
+            path: Path.resolve(path),
             code: UTF8,
         }]);
     });
@@ -45,7 +46,7 @@ describe('Given [io-file] helper methods', (): void => {
         await writeTextFile(path, content);
 
         expect(restore()).to.be.deep.equal([{
-            path,
+            path: Path.resolve(path),
             content,
             code: UTF8,
         }]);
