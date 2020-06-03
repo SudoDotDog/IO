@@ -9,6 +9,7 @@ export * from "./dig/dig";
 export * from "./dig/folder";
 export * from "./external/external";
 export * from "./external/protocol";
+export * from "./file/buffer";
 export * from "./file/common";
 export * from "./file/ensure";
 export * from "./file/file";
