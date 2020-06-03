@@ -5,28 +5,36 @@
  */
 
 import * as Fs from "fs";
-import { UTF8 } from "./common";
+import * as Path from "path";
 
-export const readTextFile = (path: string): Promise<string> =>
-    new Promise<string>((resolve: (result: string) => void, reject: (reason: NodeJS.ErrnoException) => void) =>
-        Fs.readFile(path, UTF8, (error: NodeJS.ErrnoException | null, data: string) => {
+export const readBufferFile = (path: string): Promise<Buffer> => {
 
-            if (error) {
-                reject(error);
+    const resolved: string = Path.resolve(path);
+    return new Promise<Buffer>((resolve: (result: Buffer) => void, reject: (reason: any) => void) => {
+
+        Fs.readFile(resolved, (err: any, data: Buffer) => {
+            if (err) {
+                reject(err);
                 return;
             }
             resolve(data);
             return;
-        }));
+        });
+    });
+};
 
-export const writeTextFile = (path: string, content: string): Promise<void> =>
-    new Promise<void>((resolve: () => void, reject: (reason: NodeJS.ErrnoException) => void) =>
-        Fs.writeFile(path, content, UTF8, (error: NodeJS.ErrnoException | null) => {
+export const writeBufferFile = (path: string, data: Buffer): Promise<void> => {
 
-            if (error) {
-                reject(error);
+    const resolved: string = Path.resolve(path);
+    return new Promise<void>((resolve: () => void, reject: (reason: any) => void) => {
+
+        Fs.writeFile(resolved, data, (err: any) => {
+            if (err) {
+                reject(err);
                 return;
             }
             resolve();
             return;
-        }));
+        });
+    });
+};
