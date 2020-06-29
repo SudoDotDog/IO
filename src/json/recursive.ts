@@ -11,11 +11,16 @@ import * as Path from "path";
 import { readTextFile } from "../file/text";
 import { ERROR_CODE, panic } from "../panic/panic";
 
-// tslint:disable-next-line: ban-types
+// eslint-disable-next-line @typescript-eslint/ban-types
 const isObject = (element: any): element is Object => (element !== null && typeof element === 'object');
 const isRefString = (element: any): element is string => (typeof element === 'string' && /^\$ref:.+/.test(element));
 
-export const recursiveRead = async (path: string, depth: number = 0, maxDepth: number = 15): Promise<any> => {
+export const recursiveRead = async (
+    path: string,
+    depth: number = 0,
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    maxDepth: number = 15,
+): Promise<any> => {
 
     const content: string = await readTextFile(path);
     const parsed: any = _Json.safeParse(content, panic.code(ERROR_CODE.JSON_PARSE_FAILED, content));
@@ -25,7 +30,13 @@ export const recursiveRead = async (path: string, depth: number = 0, maxDepth: n
     return await recursiveParse(parsed, rootPath, depth + 1, maxDepth);
 };
 
-export const recursiveParse = async (parsed: any, rootPath: string, depth: number = 0, maxDepth: number = 15): Promise<any> => {
+export const recursiveParse = async (
+    parsed: any,
+    rootPath: string,
+    depth: number = 0,
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+    maxDepth: number = 15,
+): Promise<any> => {
 
     if (Array.isArray(parsed)) {
 

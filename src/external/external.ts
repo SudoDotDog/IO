@@ -9,7 +9,7 @@ import * as Http from "http";
 import * as Https from "https";
 import { removeFile } from "../file/file";
 
-export const getHttpClient = (url: string) => {
+export const getHttpClient = (url: string): typeof Https | typeof Http => {
 
     if (url.substring(0, 5) === 'https') {
         return Https;

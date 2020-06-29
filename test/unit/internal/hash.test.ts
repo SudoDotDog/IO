@@ -13,7 +13,7 @@ describe('Given [io-hash] helper methods', (): void => {
 
     const chance: Chance.Chance = new Chance('io-hash');
 
-    it('should be able to md5 string', async (): Promise<void> => {
+    it('should be able to md5 string', (): void => {
 
         const thing: string = chance.string();
 
@@ -23,7 +23,7 @@ describe('Given [io-hash] helper methods', (): void => {
         expect(result1).to.be.equal(result2);
     });
 
-    it('should be able to return different md5 string', async (): Promise<void> => {
+    it('should be able to return different md5 string', (): void => {
 
         const result1: string = md5String(chance.string());
         const result2: string = md5String(chance.string());

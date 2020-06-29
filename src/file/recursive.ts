@@ -73,7 +73,7 @@ export const recursiveDo = async (
     folderCondition: RecursiveCondition,
     fileCondition: RecursiveCondition,
     relative: string[],
-) => {
+): Promise<void> => {
 
     const status: Fs.Stats = await pathStatus(path);
     if (status.isDirectory()) {

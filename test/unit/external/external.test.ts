@@ -8,6 +8,7 @@
 import { Mock, Sandbox } from "@sudoo/mock";
 import { expect } from "chai";
 import * as Chance from "chance";
+// eslint-disable-next-line camelcase
 import * as func_IO_EXTERNAL from "../../../src/external/external";
 import { mockWriteStream } from "../../mock/fs";
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 /**
  * @author WMXPY
  * @namespace File
