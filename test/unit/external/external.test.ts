@@ -16,6 +16,10 @@ describe('Given [io-external] helper methods', (): void => {
 
     const chance: Chance.Chance = new Chance('io-external');
 
+    after(() => {
+        Mock.restoreAll();
+    });
+
     it('should be able to download file', async (): Promise<void> => {
 
         const getHttpClientSandbox = Sandbox.create();
